@@ -5,16 +5,16 @@ const app = express();
 app.use(express.json());
 let csv;
 let db = [];
-let myCars = {};
+let myUsers = {};
 let idCount = 1;
 
 app.post(
   "/",
   (req, res, next) => {
-    myCars = req.body;
-    myCars.userDetails.userId = idCount;
+    myUsers = req.body;
+    myUsers.userDetails.userId = idCount;
     ++idCount;
-    db.push(myCars);
+    db.push(myUsers);
     res.send(req.body);
     console.log(db);
     next();
@@ -29,6 +29,7 @@ app.post(
       "userDetails.pincode",
       "userDetails.mobile"
     ];
+
     console.log("has to be exceuted last");
     let parser = new Parser({
       fields,
